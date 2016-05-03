@@ -20,11 +20,11 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 3. Copy the php/cfg/measuring.db file to a directory with read/write/execute, for example /var/rpimonitor
 4. Configure cron task metrics collection. For example:
 
->> crontab -e
+> crontab -e
 
->> 0 * * * * php /media/hd/public/status/php/scripts/measuring.php -t
+> 0 * * * * php /media/hd/public/status/php/scripts/measuring.php -t
 
->> 15 * * * * php /media/hd/public/status/php/scripts/measuring.php -m
+> 15 * * * * php /media/hd/public/status/php/scripts/measuring.php -m
 
 Finally, you can access to your IP server to view the application.
 
