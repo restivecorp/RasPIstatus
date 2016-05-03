@@ -11,6 +11,11 @@ This is a PHP Web application that gets control to the status of a Raspberry PI.
 
 After satisfying the requirements simply download the application, configure and start using it.
 
+## How does it work
+The application displays the information, online, about the raspberry.
+According to the application screen shows data to the CPU, processor, memory, storage, network,...
+In addition, if set in cron, the application collects the temperature and memory values and show graphics.
+
 The application template is 'Harmony Admin': http://themestruck.com/theme/harmony-admin/
 
 ## Settings
