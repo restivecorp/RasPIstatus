@@ -22,9 +22,9 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 
 > crontab -e
 
-> 0 * * * * php /media/hd/public/status/php/scripts/measuring.php -t
+> 0 * * * * php /www/rpistatus/php/scripts/measuring.php -t
 
-> 15 * * * * php /media/hd/public/status/php/scripts/measuring.php -m
+> 15 * * * * php /www/rpistatus/php/scripts/measuring.php -m
 
 Finally, you can access to your IP server to view the application.
 
