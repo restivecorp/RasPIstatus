@@ -33,4 +33,14 @@ If you can make changes in your system you can edit the netx files:
 * php/scripts/metrics.php
 
 ## Screenshots
+![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/01.dash.png)
+![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/02.system.png)
+![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/03.processor.png)
+![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/04.temp.png)
+![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/05.memory.png)
+![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/06.storage.png)
+![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/07.network.png)
+![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/08.services.png)
+
+
 
