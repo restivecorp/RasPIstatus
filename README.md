@@ -15,13 +15,20 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 
 ## Settings
 1. Download the project
+2. Copy to apache root directory
 2. Modify the php/cfg/services.cfg file to indicate which services you want to monitor
 3. Copy the php/cfg/measuring.db file to a directory with read/write/execute, for example /var/rpimonitor
-4. Configure cron task metrics collection
-5. Start the services
+4. Configure cron task metrics collection. For example:
 
+>> crontab -e
 
-You can make changes if your system does not have as many disk partitions for which it is intended or modify data collection commands. To do this edit the files:
+>> 0 * * * * php /media/hd/public/status/php/scripts/measuring.php -t
+
+>> 15 * * * * php /media/hd/public/status/php/scripts/measuring.php -m
+
+Finally, you can access to your IP server to view the application.
+
+If you can make changes in your system you can edit the netx files:
 * php/scripts/measuring.php
 * php/scripts/metrics.php
 
