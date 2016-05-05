@@ -11,8 +11,7 @@
 			print("-----------------------\n");
 			print("   * -t: To measure Temperature\n");
 			print("   * -m: To measure Memory\n");
-			print("   * -s: To measure Storage\n");
-			print("   * -n: To measure Network\n");
+			print("   * -ip: Public IP\n");
 			return;
 		}
 
@@ -26,19 +25,33 @@
 			return;
     	}
 
-      	if ($argv[1] == "-s") {
-    		print "disco\n";
-			return;    	
-    	}
-
-       	if ($argv[1] == "-n") {
-    		print "red\n";	
+       	if ($argv[1] == "-ip") {
+    		knowIP();	
 			return;    		
     	}    	
 	}
 
 	function getDataBaseLocation() {
 		return "/var/rpistatus/measuring.db";
+	}
+
+	/**
+	 * Know IP
+	 */
+	function knowIP() {
+		$db = new SQLite3(getDataBaseLocation());
+		$results = $db->query("select ip from network order by id desc limit 1");
+		
+ 		$newIP = getPublicIP();
+ 		$oldIP = "0.0.0.0";
+ 		while($row = $results->fetchArray(SQLITE3_ASSOC)) {
+        	$oldIP = $row["ip"];
+    	}
+
+ 		if ($newIP != $oldIP) {
+			$db->exec("insert into network (date, ip) values ('". today() . "', '" . $newIP . "')");
+ 		} 
+		$db->close();
 	}
 
 	/**
@@ -69,7 +82,6 @@
 		$query = "select substr(date, 12) x, temp y from temp where id in (select id from temp order by id desc limit ".$max.")";
 		return getLastValuesXY($query);
 	}
-
 
 	/**
 	 * Last mems used
