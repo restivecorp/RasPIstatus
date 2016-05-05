@@ -56,12 +56,20 @@
 
 								<?php 
 									$ad = getDownloads();
+									$per = "-rwxrwxrwx 1 root root";
+									$perd = "drwxrwxrwx 1 root root";
+									$ico = "<i class=\"fa fa-angle-double-right\"></i> ";
 
 									if ($ad > 0) { 
 										$dwn = getDownloadsName();
+
 										echo "<ul>";
 										for ($i = 1; $i <= count($dwn) - 2; $i++) {
-    										echo "<li><i class=\"fa fa-angle-double-right\"></i>" . str_replace("-rwxrwxrwx 1 root root", "", $dwn[$i]) . "</li>";
+											if (strpos($dwn[$i], $perd) !== false) {
+												echo "<li>" . $ico . str_replace($perd, "", $dwn[$i]) . "</li>";
+											} else {
+												echo "<li>" . $ico . str_replace($per, "", $dwn[$i]) . "</li>";
+											}    										
 										}
 										echo "</ul>";
 									}else{
