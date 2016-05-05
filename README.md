@@ -22,10 +22,12 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 1. Download the project
 2. Copy to apache root directory
 2. Modify the php/cfg/services.cfg file to indicate which services you want to monitor
-3. Copy the php/cfg/measuring.db file to a directory with read/write/execute, for example /var/rpimonitor
+3. Copy the php/cfg/measuring.db file to a directory with read/write/execute, for example /var/rpistatus (see 'php/scripts/measuring.php' file)
 4. Configure cron task metrics collection. For example:
 
 > crontab -e
+
+> 0 0 * * * php /www/rpistatus/php/scripts/measuring.php -ip
 
 > 0 * * * * php /www/rpistatus/php/scripts/measuring.php -t
 
