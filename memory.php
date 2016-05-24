@@ -62,9 +62,7 @@
 										<i class="fa fa-angle-double-right"></i>
 										<strong>Free:</strong> <?php echo $memory[3]; ?>Mb
                                         <?php if ($memory[3] < 50) { ?>
-											<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal">
 												<i class="fa fa-bomb"></i>
-											</button>
                                         <?php  } ?>
 									</li>
 
@@ -85,63 +83,50 @@
 								</ul>
 							</div>
 
-							<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="myModalLabel">Memory Usage Process</h4>
-										</div>
-										<div class="modal-body">
-											<table class="table table-bordered table-striped">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th>PID</th>
-														<th>% Mem</th>
-														<th>Command</th>
-													</tr>
-												</thead>
-												<tbody>
-												<?php 
-													$ml = getMemoryLeaks();
-													
-													for ($i = 1; $i <= count($ml) - 2; $i++) {
-														echo "<tr>";
-															$data = explode(" ", $ml[$i]);
-					    									echo "<th scope=\"row\">" . $i . "</th>";
-					    									echo "<td>" . $data[0] . "</td>";
-					    									echo "<td>" . $data[1] . "</td>";
-					    									echo "<td>" . $data[2] . "</td>";
-														echo "</tr>";
-													}
-													
-													?>
-												</tbody>
-											</table>
-
-											
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										</div>
-									</div>
-								</div>
-							</div>
-
 							<div class="col-md-9">
 								<div class="chart">
 									<canvas id="lineChart"></canvas>
 								</div>
 								<div id="legendDiv"></div>
 							</div>
-
 						</div>
-
+					</div>
+			</div>
+			
+			<div class="panel panel-default">
+						<div class="panel-heading">
+							Process 
+						</div>
+					<div class="panel-body">				
+						<div class="row">
+							<table class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>PID</th>
+										<th>% Mem</th>
+										<th>Command</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php 
+									$ml = getMemoryLeaks();
+									
+									for ($i = 1; $i <= count($ml) - 2; $i++) {
+										echo "<tr>";
+											$data = explode(" ", $ml[$i]);
+											echo "<th scope=\"row\">" . $i . "</th>";
+											echo "<td>" . $data[0] . "</td>";
+											echo "<td>" . $data[1] . "</td>";
+											echo "<td>" . $data[2] . "</td>";
+										echo "</tr>";
+									}
+									?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 
