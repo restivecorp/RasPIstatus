@@ -61,7 +61,7 @@
 	 */
 	function getDownloads(){
 		// invoke
-		$result = executeCommand("ls /media/hd/public/.incoming/ | wc -l");
+		$result = executeCommand("ls /media/hd/raspi/.incoming | wc -l");
 		
 		// return
 		return $result;
@@ -72,7 +72,7 @@
 	 */
 	function getDownloadsName(){
 		// invoke
-		$result = shell_exec("ls -lh /media/hd/public/.incoming/");
+		$result = shell_exec("ls -lh /media/hd/raspi/.incoming");
 		
 		// operations
 		$data = explode("\n", $result);
@@ -163,6 +163,31 @@
 
 		// return
 		return $ip;
+	}
+
+	/**
+ 	 * Notify public IP
+ 	 */
+	function notifyIP($ip) {
+		$channel = 'lubo.server';
+		$apikey = '3c18aa90ea6ab772ae2fcf032f7893cc4b5bbf21';
+
+		$today = date('YYYY-MM-DD');
+		$expire = strtotime ( '+2 day' , strtotime ( $today ) ) ;
+		
+		$data = array(
+			'body' => 'The public IP changed.',
+			'message_type' => 'text/plain',
+			'expire' => $expire
+		);
+
+		$ch = curl_init("http://api.pushetta.com/api/pushes/$channel/");
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Token $apikey"));
+
+		// $response = json_decode(curl_exec($ch));
 	}
 
 	/**
@@ -345,10 +370,10 @@
 			$s = fgets($fp);
 			$name = explode('#', $s)[0];
 			
-			if ($name == "apache2"){
-				$srv = new Service($name, "active (running)"); 
-				array_push($services, $srv);
-			} else {
+		//	if ($name == "apache2"){
+		//		$srv = new Service($name, "active (running)"); 
+		//		array_push($services, $srv);
+		//	} else {
 				$command = "service " . $name . " status | grep Active";
 				$result = executeCommand($command);
 				
@@ -356,7 +381,7 @@
 					
 				$srv = new Service($name, $result); 
 				array_push($services, $srv);
-			}
+		//	}
 
 		}
 		fclose($fp);

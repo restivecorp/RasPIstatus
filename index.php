@@ -157,10 +157,10 @@
 									<div class="col-md-3">
 										<div class="panel panel-default">
 											<?php 
-												$public = getStoragePublic()[3];
+												$swap = getStoragePublic()[3];
 												$color = "primary";
 												
-												if (eregi_replace("[a-zA-Z]", "", $public) < 200) {
+												if (eregi_replace("[a-zA-Z]", "", $swap) < 10) {
 													$color = "warning";
 												} else {
 													$color = "success";
@@ -168,8 +168,8 @@
 											?>
 											<div class="panel-body bk-<?php echo $color; ?> text-light">
 												<div class="stat-panel text-center">
-													<div class="stat-panel-number h1 "><?php echo $public; ?></div>
-													<div class="stat-panel-title text-uppercase">Free in /public</div>
+													<div class="stat-panel-number h1 "><?php echo $swap; ?></div>
+													<div class="stat-panel-title text-uppercase">Free in /swap</div>
 												</div>
 											</div>
 											<a href="storage.php" class="block-anchor panel-footer text-center">+info &nbsp; <i class="fa fa-arrow-right"></i></a>
@@ -179,10 +179,10 @@
 									<div class="col-md-3">
 										<div class="panel panel-default">
 											<?php 
-												$private = getStoragePrivate()[3];
+												$raspi = getStoragePrivate()[3];
 												$color = "primary";
 												
-												if (eregi_replace("[a-zA-Z]", "", $private) < 200) {
+												if (eregi_replace("[a-zA-Z]", "", $raspi) < 200) {
 													$color = "warning";
 												} else {
 													$color = "success";
@@ -190,8 +190,8 @@
 											?>
 											<div class="panel-body bk-<?php echo $color; ?> text-light">
 												<div class="stat-panel text-center">
-													<div class="stat-panel-number h1 "><?php echo $private; ?></div>
-													<div class="stat-panel-title text-uppercase">Free in /private</div>
+													<div class="stat-panel-number h1 "><?php echo $raspi; ?></div>
+													<div class="stat-panel-title text-uppercase">Free in /raspi</div>
 												</div>
 											</div>
 											<a href="storage.php" class="block-anchor panel-footer text-center">+info &nbsp; <i class="fa fa-arrow-right"></i></a>

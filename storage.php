@@ -82,7 +82,7 @@
 								<div class="row">
 									<div class="col-md-3">
 										<div class="panel panel-default">
-											<div class="panel-heading">/</div>
+											<div class="panel-heading"><?php  echo $root[5];?></div>
 											<div class="panel-body">
 												<div class="row">
 													<div class="col-md-4">
@@ -103,7 +103,7 @@
 
 									<div class="col-md-3">
 										<div class="panel panel-default">
-											<div class="panel-heading">/Boot</div>
+											<div class="panel-heading"><?php  echo $boot[5];?></div>
 											<div class="panel-body">
 												<div class="row">
 													<div class="col-md-4">
@@ -124,7 +124,7 @@
 
 									<div class="col-md-3">
 										<div class="panel panel-default">
-											<div class="panel-heading">/public</div>
+											<div class="panel-heading"><?php  echo $public[5];?></div>
 											<div class="panel-body">
 												<div class="row">
 													<div class="col-md-4">
@@ -145,7 +145,7 @@
 
 									<div class="col-md-3">
 										<div class="panel panel-default">
-											<div class="panel-heading">/private</div>
+											<div class="panel-heading"><?php  echo $private[5];?></div>
 											<div class="panel-body">
 												<div class="row">
 													<div class="col-md-4">

@@ -50,6 +50,7 @@
 
  		if ($newIP != $oldIP) {
 			$db->exec("insert into network (date, ip) values ('". today() . "', '" . $newIP . "')");
+			notifyIP($newIP);
  		} 
 		$db->close();
 	}
