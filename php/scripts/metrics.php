@@ -327,7 +327,7 @@
 		$store = array(); //0 name, 1 total, 2 used, 3 free, 4 percent, 5 mounted on
 
 		// invoke
-		$storage = executeCommand("df -h " . $k);
+		$storage = executeCommand("df -BG " . $k);
 
 		//operations
 		$s = explode(' ', $storage);
