@@ -138,7 +138,7 @@
 												$boot = getStorageBoot()[3];
 												$color = "primary";
 												
-												if (eregi_replace("[a-zA-Z]", "", $boot) < 30) {
+												if (eregi_replace("[a-zA-Z]", "", $boot) < 1) {
 													$color = "warning";
 												} else {
 													$color = "success";
