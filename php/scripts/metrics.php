@@ -164,32 +164,7 @@
 		// return
 		return $ip;
 	}
-
-	/**
- 	 * Notify 
- 	 */
-	function notifyPushetta($msg) {
-		$channel = 'CANNEL_NAME';
-		$apikey = 'API_CODE';
-
-		$today = date('YYYY-MM-DD');
-		$expire = strtotime ( '+2 day' , strtotime ( $today ) ) ;
-		
-		$data = array(
-			'body' => $msg,
-			'message_type' => 'text/plain',
-			'expire' => $expire
-		);
-
-		$ch = curl_init("http://api.pushetta.com/api/pushes/$channel/");
-		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Token $apikey"));
-		
-		curl_exec($ch);
-	}
-
+	
 	/**
  	 * Processor
  	 */

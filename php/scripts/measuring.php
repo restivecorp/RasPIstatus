@@ -48,10 +48,6 @@
         	$oldIP = $row["ip"];
     	}
 
- 		if ($newIP != $oldIP) {
-			$db->exec("insert into network (date, ip) values ('". today() . "', '" . $newIP . "')");
-			notifyPushetta('Public IP was changed!');
- 		} 
 		$db->close();
 	}
 
@@ -60,10 +56,6 @@
 	 */
 	function measureTemp() {
 		$actualTemp = getTemp();
-
- 		if ($actualTemp > 49) {
-			notifyPushetta('High temperature!');
- 		} 
 		
 		$db = new SQLite3(getDataBaseLocation());
 		$db->exec("insert into temp (date, temp) values ('". today() . "'," . $actualTemp . ")");		
