@@ -28,7 +28,7 @@
 												$temp = getTemp();
 												$color = "primary";
 
-												if ($temp > 42) {
+												if ($temp > 50) {
 													$color = "warning";
 												} else {
 													$color = "success";
