@@ -166,17 +166,17 @@
 	}
 
 	/**
- 	 * Notify public IP
+ 	 * Notify 
  	 */
-	function notifyIP($ip) {
-		$channel = 'lubo.server';
-		$apikey = '3c18aa90ea6ab772ae2fcf032f7893cc4b5bbf21';
+	function notifyPushetta($msg) {
+		$channel = 'CANNEL_NAME';
+		$apikey = 'API_CODE';
 
 		$today = date('YYYY-MM-DD');
 		$expire = strtotime ( '+2 day' , strtotime ( $today ) ) ;
 		
 		$data = array(
-			'body' => 'The public IP changed.',
+			'body' => $msg,
 			'message_type' => 'text/plain',
 			'expire' => $expire
 		);
@@ -186,8 +186,8 @@
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Token $apikey"));
-
-		// $response = json_decode(curl_exec($ch));
+		
+		curl_exec($ch);
 	}
 
 	/**

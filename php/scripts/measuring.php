@@ -32,7 +32,7 @@
 	}
 
 	function getDataBaseLocation() {
-		return "/var/rpistatus/measuring.db";
+		return "/var/cache/rpistatus/measuring.db";
 	}
 
 	/**
@@ -50,7 +50,7 @@
 
  		if ($newIP != $oldIP) {
 			$db->exec("insert into network (date, ip) values ('". today() . "', '" . $newIP . "')");
-			notifyIP($newIP);
+			notifyPushetta('Public IP was changed!');
  		} 
 		$db->close();
 	}
@@ -59,8 +59,14 @@
 	 * Save temp in database
 	 */
 	function measureTemp() {
+		$actualTemp = getTemp();
+
+ 		if ($actualTemp > 49) {
+			notifyPushetta('High temperature!');
+ 		} 
+		
 		$db = new SQLite3(getDataBaseLocation());
-		$db->exec("insert into temp (date, temp) values ('". today() . "'," . getTemp() . ")");		
+		$db->exec("insert into temp (date, temp) values ('". today() . "'," . $actualTemp . ")");		
 		$db->close();
 	}
 
