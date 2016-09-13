@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 
-<?php require_once('partials/header.php'); ?> 
+<?php require_once('partials/header_refresh.php'); ?> 
 
 <body>
 	
@@ -56,22 +56,19 @@
 
 								<?php 
 									$ad = getDownloads();
-									$per = "-rwxrwxrwx 1 root root";
-									$perd = "drwxrwxrwx 1 root root";
-									$ico = "<i class=\"fa fa-angle-double-right\"></i> ";
-
 									if ($ad > 0) { 
 										$dwn = getDownloadsName();
-
-										echo "<ul>";
-										for ($i = 1; $i <= count($dwn) - 2; $i++) {
-											if (strpos($dwn[$i], $perd) !== false) {
-												echo "<li>" . $ico . str_replace($perd, "", $dwn[$i]) . "</li>";
-											} else {
-												echo "<li>" . $ico . str_replace($per, "", $dwn[$i]) . "</li>";
-											}    										
+										
+										echo "<pre>";
+										echo $dwn[0];
+										echo "</pre>";
+										
+										echo "<pre>";
+										for ($i = 1; $i < count($dwn) -2; $i++) {
+											echo $dwn[$i] . "</br>";
 										}
-										echo "</ul>";
+										echo "</pre>";
+										
 									}else{
 										echo "No downloads in progress.";
 									}
