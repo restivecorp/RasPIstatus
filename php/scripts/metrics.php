@@ -64,7 +64,7 @@
 		$result = executeCommand("ls /media/hd/raspi/.incoming | wc -l");
 		
 		// return
-		return $result;
+		return $result;		
 	}
 
 	/**
@@ -72,14 +72,16 @@
 	 */
 	function getDownloadsName(){
 		// invoke
-		$result = shell_exec("ls -lh /media/hd/raspi/.incoming");
+		$result = shell_exec("transmission-remote -l");
 		
 		// operations
-		$data = explode("\n", $result);
-
-		// return
-		return $data;
+		$downloads = explode("\n", $result);
+		
+		// return		
+		return $downloads;		
 	}
+	
+	
 
 	/**
  	 * Network
