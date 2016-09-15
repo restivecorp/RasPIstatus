@@ -12,12 +12,36 @@
 
 		<div class="content-wrapper">
 			<div class="container-fluid">
+		
 				<div class="row">
 					<div class="col-md-12">
 						<h2 class="page-title">Network</h2>
 					</div>
 				</div>
+
+				<?php
+					if (isset($_GET["up"])) {
+						$u = $_GET["up"];
 						
+						if ($u == "OK") {
+				?>
+							<div class="alert alert-success" role="alert">
+								<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+								<span class="sr-only"></span> The file uploaded successfully
+							</div>
+				<?php		
+					} 
+						if ($u == "KO") {
+				?>
+							<div class="alert alert-danger" role="alert">
+								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+								<span class="sr-only"></span> The file has not uploaded
+							</div>							
+				<?php		
+						}
+					} 
+				?>
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Network Status since <?php echo getUptime(); ?>
@@ -41,6 +65,23 @@
 										<strong>Uploaded:</strong> <?php echo getNetwork("U"); ?>
 									</li>
 								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Upload File
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+								
+								<form enctype="multipart/form-data" action="webup/up.php" method="POST">
+									<input type="hidden" name="MAX_FILE_SIZE" value="524288" />
+									<input name="f" type="file" /> <input type="submit" value="Up" />
+								</form>
 							</div>
 						</div>
 					</div>
