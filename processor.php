@@ -51,10 +51,6 @@
 									<td><?php echo getFrecuency(); ?></td>
 								</tr>
 								<tr>
-									<td>Voltage</td>
-									<td><?php echo getVoltage(); ?></td>
-								</tr>
-								<tr>
 									<td>Scaling</td>
 									<td><?php echo getScaling(); ?></td>
 								</tr>

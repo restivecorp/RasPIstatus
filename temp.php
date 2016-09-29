@@ -39,7 +39,7 @@
 								<ul>
 									<li>
 										<i class="fa fa-angle-double-right"></i>
-										<strong>CPU:</strong> <?php echo $temp; ?>º C
+										<strong>CPU:</strong> <?php echo $temp; ?> ?C
 									</li>
 								</ul>
 							</div>

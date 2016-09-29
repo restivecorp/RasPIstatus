@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 
-<?php require_once('partials/header_refresh.php'); ?> 
+<?php require_once('partials/header.php'); ?> 
 
 <body>
 	

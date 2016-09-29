@@ -29,12 +29,24 @@
 							</thead>
 							<tbody>
 								<?php  
-									$services = getServiceStatus();
-
-									for($i = 0; $i < count($services); ++$i) {
-										echo "<tr class=".$services[$i]->styleClass.">";
-											echo "<td>".$services[$i]->name."</td>";
-											echo "<td>".$services[$i]->status."</td>";
+									$services = getServices();
+									
+									for($i = 0; $i < count($services) -1; ++$i) {
+										$srv = explode("] ", $services[$i]);
+										$status = "";
+										$statusClass = "";
+										
+										if (strpos($srv[0], '+') !== false) {
+											$statusClass = "success";
+											$status = "Active";
+										}else {
+											$statusClass = "danger";
+											$status = "Stopped";
+										}
+										
+										echo "<tr class=".$statusClass.">";
+											echo "<td>".$srv[1]."</td>";
+											echo "<td>".$status."</td>";
 										echo "</tr>";
 									}
 								?>	

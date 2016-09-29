@@ -18,26 +18,35 @@ In addition, if set in cron, the application collects the temperature and memory
 
 The application template is 'Harmony Admin': http://themestruck.com/theme/harmony-admin/
 
-## Settings
-1. Download the project
-2. Copy to apache root directory
-2. Modify the php/cfg/services.cfg file to indicate which services you want to monitor
-3. Copy the php/cfg/measuring.db file to a directory with read/write/execute, for example /var/rpistatus (see 'php/scripts/measuring.php' file)
-4. Configure cron task metrics collection. For example:
+## Install and Usage
+
+1. Download or clone this repository
+2. Copy to server root directory [/var/www/RasPIstatus]
+3. Copy the database 'file metrics/metrics.db' to a directory with read/write/execute permissions [/var/rpistatus/metrics.db]
+4. Edit file 'metrics/metrics.php' to set the correct path:
+
+> 	$IFACE = "eth0"; // name of network interface
+> 	$DWNDIR = "/media/downloads/.incoming"; // transmission donload dir
+>	getDataBaseLocation() = "/var/rpistatus/metrics.db"; // database file path (step 3)
+
+5. Edit 'index.php' and 'storage.php' files to set correctly mounted directories. In this repository there are two partitions in /sda1 and /sda2
+
+> index.php: edit ::> $sda1 = getStorage("/dev/sda1")[3];
+> index.php: edit ::> $sda2 = getStorage("/dev/sda2")[3]; 
+
+> storage.php: edit ::> $sda1 = getStorage("/dev/sda1"); 
+> storage.php: edit ::> $sda2 = getStorage("/dev/sda2"); 
+
+6. Configure cron task to metrics collection. For example:
 
 > crontab -e
-
-> 0 0 * * * php /www/rpistatus/php/scripts/measuring.php -ip
-
-> 0 * * * * php /www/rpistatus/php/scripts/measuring.php -t
-
-> 15 * * * * php /www/rpistatus/php/scripts/measuring.php -m
+> 0 0 * * *   php /var/www/RasPIstatus/metrics.php -ip
+> 0 * * * *   php /var/www/RasPIstatus/metrics.php -t
+> 15 * * * *  php /var/www/RasPIstatus/metrics.php -m
 
 Finally, you can access to your IP server to view the application.
 
-If you can make changes in your system you can edit the netx files:
-* php/scripts/measuring.php
-* php/scripts/metrics.php
+
 
 ## Screenshots
 ![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/01.dash.png)
@@ -48,6 +57,4 @@ If you can make changes in your system you can edit the netx files:
 ![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/06.storage.png)
 ![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/07.network.png)
 ![alt tag](https://github.com/ruboweb/RasPIstatus/blob/master/screenshots/08.services.png)
-
-
 

@@ -47,10 +47,6 @@
 									<td><?php echo getFirmware(); ?></td>
 								</tr>
 								<tr>
-									<td>Upgrades</td>
-									<td><?php echo getUpgrades(); ?></td>
-								</tr>
-								<tr>
 									<td>Uptime</td>
 									<td><?php echo getUptime(); ?></td>
 								</tr>

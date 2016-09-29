@@ -1,4 +1,4 @@
-<?php include ("php/scripts/measuring.php"); ?>
+<?php include ("metrics/metrics.php"); ?>
 
 <head>
 	<meta charset="UTF-8">
@@ -7,6 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
+	<meta http-equiv="refresh" content="30" >
 	
 	<title>Raspberry PI Status</title>
 

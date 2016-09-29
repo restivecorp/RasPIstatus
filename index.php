@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" class="no-js">
 
-<?php require_once('partials/header_refresh.php'); ?> 
+<?php require_once('partials/header.php'); ?> 
 
 <body>
 	
@@ -113,7 +113,7 @@
 									<div class="col-md-3">
 										<div class="panel panel-default">
 											<?php 
-												$root = getStorageRoot()[3];
+												$root = getStorage("/")[3];
 												$color = "primary";
 												
 												if (eregi_replace("[a-zA-Z]", "", $root) < 5) {
@@ -135,7 +135,7 @@
 									<div class="col-md-3">
 										<div class="panel panel-default">
 											<?php 
-												$boot = getStorageBoot()[3];
+												$boot = getStorage("/boot", "M")[3];
 												$color = "primary";
 												
 												if (eregi_replace("[a-zA-Z]", "", $boot) < 1) {
@@ -157,10 +157,10 @@
 									<div class="col-md-3">
 										<div class="panel panel-default">
 											<?php 
-												$swap = getStoragePublic()[3];
+												$sda1 = getStorage("/dev/sda1")[3];
 												$color = "primary";
 												
-												if (eregi_replace("[a-zA-Z]", "", $swap) < 10) {
+												if (eregi_replace("[a-zA-Z]", "", $sda1) < 10) {
 													$color = "warning";
 												} else {
 													$color = "success";
@@ -168,8 +168,8 @@
 											?>
 											<div class="panel-body bk-<?php echo $color; ?> text-light">
 												<div class="stat-panel text-center">
-													<div class="stat-panel-number h1 "><?php echo $swap; ?></div>
-													<div class="stat-panel-title text-uppercase">Free in /swap</div>
+													<div class="stat-panel-number h1 "><?php echo $sda1; ?></div>
+													<div class="stat-panel-title text-uppercase">Free in /sda1</div>
 												</div>
 											</div>
 											<a href="storage.php" class="block-anchor panel-footer text-center">+info &nbsp; <i class="fa fa-arrow-right"></i></a>
@@ -179,10 +179,10 @@
 									<div class="col-md-3">
 										<div class="panel panel-default">
 											<?php 
-												$raspi = getStoragePrivate()[3];
+												$sda2 = getStorage("/dev/sda2")[3];
 												$color = "primary";
 												
-												if (eregi_replace("[a-zA-Z]", "", $raspi) < 200) {
+												if (eregi_replace("[a-zA-Z]", "", $sda2) < 200) {
 													$color = "warning";
 												} else {
 													$color = "success";
@@ -190,8 +190,8 @@
 											?>
 											<div class="panel-body bk-<?php echo $color; ?> text-light">
 												<div class="stat-panel text-center">
-													<div class="stat-panel-number h1 "><?php echo $raspi; ?></div>
-													<div class="stat-panel-title text-uppercase">Free in /raspi</div>
+													<div class="stat-panel-number h1 "><?php echo $sda2; ?></div>
+													<div class="stat-panel-title text-uppercase">Free in /sda2</div>
 												</div>
 											</div>
 											<a href="storage.php" class="block-anchor panel-footer text-center">+info &nbsp; <i class="fa fa-arrow-right"></i></a>

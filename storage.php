@@ -19,10 +19,11 @@
 				</div>
 				
 				<?php  
-					$root = getStorageRoot();
-					$boot = getStorageBoot();
-					$public = getStoragePublic();
-					$private = getStoragePrivate();
+					$root = getStorage("/");
+					$boot = getStorage("/boot", "M");
+					
+					$sda1 = getStorage("/dev/sda1");
+					$sda2 = getStorage("/dev/sda2");
 				?>
 
 				<div class="panel panel-default">
@@ -58,20 +59,20 @@
 									<td><?php  echo $boot[0];?></td>
 								</tr>
 								<tr>
-									<td><?php  echo $public[5];?></td>
-									<td><?php  echo $public[1];?></td>
-									<td><?php  echo $public[2];?></td>
-									<td><?php  echo $public[3];?></td>
-									<td><?php  echo $public[4];?></td>
-									<td><?php  echo $public[0];?></td>
+									<td><?php  echo $sda1[5];?></td>
+									<td><?php  echo $sda1[1];?></td>
+									<td><?php  echo $sda1[2];?></td>
+									<td><?php  echo $sda1[3];?></td>
+									<td><?php  echo $sda1[4];?></td>
+									<td><?php  echo $sda1[0];?></td>
 								</tr>																
 								<tr>
-									<td><?php  echo $private[5];?></td>
-									<td><?php  echo $private[1];?></td>
-									<td><?php  echo $private[2];?></td>
-									<td><?php  echo $private[3];?></td>
-									<td><?php  echo $private[4];?></td>
-									<td><?php  echo $private[0];?></td>
+									<td><?php  echo $sda2[5];?></td>
+									<td><?php  echo $sda2[1];?></td>
+									<td><?php  echo $sda2[2];?></td>
+									<td><?php  echo $sda2[3];?></td>
+									<td><?php  echo $sda2[4];?></td>
+									<td><?php  echo $sda2[0];?></td>
 								</tr>							
 							</tbody>
 						</table>
@@ -124,7 +125,7 @@
 
 									<div class="col-md-3">
 										<div class="panel panel-default">
-											<div class="panel-heading"><?php  echo $public[5];?></div>
+											<div class="panel-heading"><?php  echo $sda1[5];?></div>
 											<div class="panel-body">
 												<div class="row">
 													<div class="col-md-4">
@@ -135,7 +136,7 @@
 													</div>
 													<div class="col-md-8">
 														<div class="chart chart-doughnut">
-															<canvas id="pieChartPublic" width="1200" height="900" />
+															<canvas id="pieChartSda1" width="1200" height="900" />
 														</div>
 													</div>
 												</div>
@@ -145,7 +146,7 @@
 
 									<div class="col-md-3">
 										<div class="panel panel-default">
-											<div class="panel-heading"><?php  echo $private[5];?></div>
+											<div class="panel-heading"><?php  echo $sda2[5];?></div>
 											<div class="panel-body">
 												<div class="row">
 													<div class="col-md-4">
@@ -156,7 +157,7 @@
 													</div>
 													<div class="col-md-8">
 														<div class="chart chart-doughnut">
-															<canvas id="pieChartPrivate" width="1200" height="900" />
+															<canvas id="pieChartSda2" width="1200" height="900" />
 														</div>
 													</div>
 												</div>
@@ -182,11 +183,11 @@
 			var pieChartBoot = document.getElementById("pieChartBoot").getContext("2d");
 			window.myDoughnut = new Chart(pieChartBoot).Pie(bootData, {responsive : true});
 
-			var pieChartPublic = document.getElementById("pieChartPublic").getContext("2d");
-			window.myDoughnut = new Chart(pieChartPublic).Pie(publicData, {responsive : true});
+			var pieChartSda1 = document.getElementById("pieChartSda1").getContext("2d");
+			window.myDoughnut = new Chart(pieChartSda1).Pie(sda1Data, {responsive : true});
 
-			var pieChartPrivate = document.getElementById("pieChartPrivate").getContext("2d");
-			window.myDoughnut = new Chart(pieChartPrivate).Pie(privateData, {responsive : true});
+			var pieChartSda2 = document.getElementById("pieChartSda2").getContext("2d");
+			window.myDoughnut = new Chart(pieChartSda2).Pie(sda2Data, {responsive : true});
 
 		}
 			var bootData = [
@@ -219,30 +220,30 @@
 				    }
 				]
 
-				var publicData = [
+				var sda1Data = [
 				    {
-				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $public[2]);?>,
+				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $sda1[2]);?>,
 				        color:"#F7464A",
 				        highlight: "#FF5A5E",
 				        label: "Red"
 				    },
 				    {
-				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $public[3]);?>,
+				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $sda1[3]);?>,
 				        color: "#46BFBD",
 				        highlight: "#5AD3D1",
 				        label: "Green"
 				    }
 				]
 
-				var privateData = [
+				var sda2Data = [
 				    {
-				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $private[2]);?>,
+				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $sda2[2]);?>,
 				        color:"#F7464A",
 				        highlight: "#FF5A5E",
 				        label: "Red"
 				    },
 				    {
-				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $private[3]);?>,
+				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $sda2[3]);?>,
 				        color: "#46BFBD",
 				        highlight: "#5AD3D1",
 				        label: "Green"
