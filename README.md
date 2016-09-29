@@ -27,7 +27,7 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 
 > 	$IFACE = "eth0"; // name of network interface
 
-> 	$DWNDIR = "/media/downloads/.incoming"; // transmission donload dir
+> 	$DWNDIR = "/media/downloads/.incoming"; // transmission download dir
 
 >	getDataBaseLocation() = "/var/rpistatus/metrics.db"; // database file path (step 3)
 
