@@ -26,22 +26,29 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 4. Edit file 'metrics/metrics.php' to set the correct path:
 
 > 	$IFACE = "eth0"; // name of network interface
+
 > 	$DWNDIR = "/media/downloads/.incoming"; // transmission donload dir
+
 >	getDataBaseLocation() = "/var/rpistatus/metrics.db"; // database file path (step 3)
 
 5. Edit 'index.php' and 'storage.php' files to set correctly mounted directories. In this repository there are two partitions in /sda1 and /sda2
 
 > index.php: edit ::> $sda1 = getStorage("/dev/sda1")[3];
+
 > index.php: edit ::> $sda2 = getStorage("/dev/sda2")[3]; 
 
 > storage.php: edit ::> $sda1 = getStorage("/dev/sda1"); 
+
 > storage.php: edit ::> $sda2 = getStorage("/dev/sda2"); 
 
 6. Configure cron task to metrics collection. For example:
 
 > crontab -e
+
 > 0 0 * * *   php /var/www/RasPIstatus/metrics.php -ip
+
 > 0 * * * *   php /var/www/RasPIstatus/metrics.php -t
+
 > 15 * * * *  php /var/www/RasPIstatus/metrics.php -m
 
 Finally, you can access to your IP server to view the application.
