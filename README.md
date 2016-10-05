@@ -20,10 +20,10 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 
 ## Install and Usage
 
-1. Download or clone this repository
-2. Copy to server root directory [/var/www/RasPIstatus]
-3. Copy the database 'file metrics/metrics.db' to a directory with read/write/execute permissions [/var/rpistatus/metrics.db]
-4. Edit file 'metrics/metrics.php' to set the correct path:
+1 Download or clone this repository
+2 Copy to server root directory [/var/www/RasPIstatus]
+3 Copy the database 'file metrics/metrics.db' to a directory with read/write/execute permissions [/var/rpistatus/metrics.db]
+4 Edit file 'metrics/metrics.php' to set the correct path:
 
 > 	$IFACE = "eth0"; // name of network interface
 
@@ -31,7 +31,7 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 
 >	getDataBaseLocation() = "/var/rpistatus/metrics.db"; // database file path (step 3)
 
-5. Edit 'index.php' and 'storage.php' files to set correctly mounted directories. In this repository there are two partitions in /sda1 and /sda2
+5 Edit 'index.php' and 'storage.php' files to set correctly mounted directories. In this repository there are two partitions in /sda1 and /sda2
 
 > index.php: edit ::> $sda1 = getStorage("/dev/sda1")[3];
 
@@ -41,7 +41,7 @@ The application template is 'Harmony Admin': http://themestruck.com/theme/harmon
 
 > storage.php: edit ::> $sda2 = getStorage("/dev/sda2"); 
 
-6. Configure cron task to metrics collection. For example:
+6 Configure cron task to metrics collection. For example:
 
 > crontab -e
 
