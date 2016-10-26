@@ -119,6 +119,28 @@
 					</div>
 				</div>
 
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Donwloads Finished Dir
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+
+								<?php 
+									$ds = getDownloadsFinished();
+									echo "<pre>";
+									
+									for ($i = 1; $i < count($ds); $i++) {
+										echo $ds[$i] . "</br>";
+									}
+									echo "</pre>";
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>

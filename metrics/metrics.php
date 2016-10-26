@@ -37,7 +37,9 @@
 	
 	// directory to count downloads (transmission downloads)
 	$DWNDIR = "/media/downloads/.incoming";
-
+	
+	// directory to list downloads finished (transmission downloads)
+	$DWNFINDIR = "/media/downloads";
 
 	// Database file
 	function getDataBaseLocation() {
@@ -369,6 +371,20 @@
 		return $result;		
 	}
 
+	/**
+	 * Transmission downloads finished
+	 */
+	function getDownloadsFinished(){
+		// invoke
+		$result = shell_exec("ls -lah " . $GLOBALS['DWNFINDIR'] . " | awk '{print $5,$9}'");
+		
+		// operations
+		$downloads = explode("\n", $result);
+		
+		// return		
+		return $downloads;	
+	}
+	
 	/**
 	 * Transmission downloads name
 	 */
