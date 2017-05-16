@@ -1,50 +1,27 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="es" class="no-js">
 
-<?php require_once('partials/header.php'); ?> 
+<?php require_once('_partials/header.php'); ?> 
 
 <body>
 	
-	<?php require_once('partials/brand.php'); ?> 
+	<?php require_once('_partials/brand.php'); ?> 
 
 	<div class="ts-main-content">
-		<?php require_once('partials/nav.php'); ?> 
+		<?php require_once('_partials/nav.php'); ?> 
 
 		<div class="content-wrapper">
 			<div class="container-fluid">
 		
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-title">Network</h2>
+						<h2 class="page-title">Donwloads</h2>
 					</div>
 				</div>
 
-				<?php
-					if (isset($_GET["up"])) {
-						$u = $_GET["up"];
-						
-						if ($u == "OK") {
-				?>
-							<div class="alert alert-success" role="alert">
-								<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-								<span class="sr-only"></span> The file uploaded successfully
-							</div>
-				<?php		
-					} 
-						if ($u == "KO") {
-				?>
-							<div class="alert alert-danger" role="alert">
-								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-								<span class="sr-only"></span> The file has not uploaded
-							</div>							
-				<?php		
-						}
-					} 
-				?>
-
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Network Status since <?php echo getUptime(); ?>
+						Network parameters
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -54,49 +31,27 @@
 										<i class="fa fa-angle-double-right"></i>
 										<strong>Public IP:</strong> <?php echo getPublicIP(); ?>
 									</li>
-
+									
 									<li>
 										<i class="fa fa-angle-double-right"></i>
-										<strong>Donwloaded:</strong> <?php echo getNetwork("D"); ?>
+										<strong>Torrent download:</strong> <?php echo getCountTorrents(); ?>
 									</li>
-
-									<li>
-										<i class="fa fa-angle-double-right"></i>
-										<strong>Uploaded:</strong> <?php echo getNetwork("U"); ?>
-									</li>
-								</ul>
+								</ul>								
 							</div>
 						</div>
 					</div>
 				</div>
-
+			
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Upload File
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-md-12">
-								
-								<form enctype="multipart/form-data" action="webup/up.php" method="POST">
-									<input type="hidden" name="MAX_FILE_SIZE" value="524288" />
-									<input name="f" type="file" /> <input type="submit" value="Up" />
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Active Donwloads
+						Active donwloads
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-12">
 
 								<?php 
-									$ad = getDownloads();
+									$ad = getCountDownloadsTemp();
 									if ($ad > 0) { 
 										$dwn = getDownloadsName();
 										
@@ -111,7 +66,7 @@
 										echo "</pre>";
 										
 									}else{
-										echo "No downloads in progress.";
+										echo "No active donwloads.";
 									}
 								?>
 							</div>
@@ -121,21 +76,69 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Donwloads Finished Dir
+						Downloads completed without move
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-12">
 
 								<?php 
-									$ds = getDownloadsFinished();
-									echo "<pre>";
+									$fd = getCountDownloadsFinished();
+								
+									if ($fd > 0) { 
+										$ds = getDownloadsFinished();
+										echo "<pre>";
 									
-									for ($i = 1; $i < count($ds); $i++) {
-										echo $ds[$i] . "</br>";
+										for ($i = 1; $i < count($ds); $i++) {
+											echo $ds[$i] . "</br>";
+										}
+										echo "</pre>";
+									}else{
+										echo "No downloads completed without move.";
+									}
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+							
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Network usage (vnstat)
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+
+								<?php 
+									$nu = getNetworkUsage();
+
+									echo "<pre>";								
+									for ($i = 0; $i < count($nu); $i++) {
+										echo $nu[$i] . "</br>";
 									}
 									echo "</pre>";
 								?>
+							</div>
+						</div>
+					</div>
+				</div>
+
+							
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Downloads in actual year
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+								
+								<div id="legendDiv"><p class="text-center"><strong>Downloads by month</strong></p></div>
+								<div class="chart">
+									<canvas id="barChart"></canvas>
+								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -145,8 +148,43 @@
 		</div>
 	</div>
 
+				
+	<script>
+		window.onload = function(){
+			var ctx = document.getElementById("barChart").getContext("2d");
+			window.myBar = new Chart(ctx).Bar(barChartData, {
+				responsive : true
+			});
+		}
+		
+		var barChartData = {
+			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+			datasets: [
+				{
+					fillColor: "rgba(151,187,205,0.5)",
+						strokeColor: "rgba(151,187,205,0.8)",
+						highlightFill: "rgba(151,187,205,0.75)",
+						highlightStroke: "rgba(151,187,205,1)",
+						data: [
+							<?php echo getDownloadsMonth('01'); ?>, 
+							<?php echo getDownloadsMonth('02'); ?>, 
+							<?php echo getDownloadsMonth('03'); ?>, 
+							<?php echo getDownloadsMonth('04'); ?>, 
+							<?php echo getDownloadsMonth('05'); ?>, 
+							<?php echo getDownloadsMonth('06'); ?>, 
+							<?php echo getDownloadsMonth('07'); ?>, 
+							<?php echo getDownloadsMonth('08'); ?>, 
+							<?php echo getDownloadsMonth('09'); ?>, 
+							<?php echo getDownloadsMonth('10'); ?>, 
+							<?php echo getDownloadsMonth('11'); ?>, 
+							<?php echo getDownloadsMonth('12'); ?>]
+				}
+			]
+		}
 
-	<?php require_once('partials/footer.php'); ?> 
+	</script>
+
+	<?php require_once('_partials/footer.php'); ?> 
 
 </body>
 
