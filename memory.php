@@ -63,12 +63,7 @@
 
 									<li>
 										<i class="fa fa-angle-double-right"></i>
-										<strong>Buffers:</strong> <?php echo $memory[5]; ?>Mb
-									</li>
-
-									<li>
-										<i class="fa fa-angle-double-right"></i>
-										<strong>Cached:</strong> <?php echo $memory[6]; ?>Mb
+										<strong>Buffers/Cached:</strong> <?php echo $memory[5]; ?>Mb
 									</li>
 								</ul>
 							</div>

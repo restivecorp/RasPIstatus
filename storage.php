@@ -19,7 +19,7 @@
 				</div>
 				
 				<?php  
-					$root = getStorage("/", "M");
+					$root = getStorage("/");
 					$boot = getStorage("/boot", "M");
 					
 					$sda1 = getStorage("/dev/sda1");
@@ -179,13 +179,13 @@
 		}
 			var bootData = [
 			    {
-			        value: <?php  echo eregi_replace("[a-zA-Z]", "", $boot[2]);?>,
+			        value: <?php  echo preg_replace("[M]", "", $boot[2]);?>,
 			        color:"#F7464A",
 			        highlight: "#FF5A5E",
 			        label: "Used"
 			    },
 			    {
-			        value: <?php  echo eregi_replace("[a-zA-Z]", "", $boot[3]);?>,
+			        value: <?php  echo preg_replace("[M]", "", $boot[3]);?>,
 			        color: "#46BFBD",
 			        highlight: "#5AD3D1",
 			        label: "Free"
@@ -194,13 +194,13 @@
 
 			var rootData = [
 				    {
-				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $root[2]);?>,
+				        value: <?php  echo preg_replace("[G]", "", $root[2]);?>,
 				        color:"#F7464A",
 				        highlight: "#FF5A5E",
 				        label: "Used"
 				    },
 				    {
-				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $root[3]);?>,
+				        value: <?php  echo preg_replace("[G]", "", $root[3]);?>,
 				        color: "#46BFBD",
 				        highlight: "#5AD3D1",
 				        label: "Free"
@@ -209,13 +209,13 @@
 
 				var sda1Data = [
 				    {
-				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $sda1[2]);?>,
+				        value: <?php  echo preg_replace("[G]", "", $sda1[2]);?>,
 				        color:"#F7464A",
 				        highlight: "#FF5A5E",
 				        label: "Used"
 				    },
 				    {
-				        value: <?php  echo eregi_replace("[a-zA-Z]", "", $sda1[3]);?>,
+				        value: <?php  echo preg_replace("[G]", "", $sda1[3]);?>,
 				        color: "#46BFBD",
 				        highlight: "#5AD3D1",
 				        label: "Free"

@@ -1,22 +1,22 @@
-<?php	
+<?php
 	// Database file
 	function getDataBaseLocation() {
-		return "/var/rpi-server/rpi-server.db";
+		return "/var/rpi-monitor/rpi-monitor.db";
 	}
-	
-	
+
+
 	/**
 	 * Get parameter cfg
 	 */
 	function getConf($key) {
-		$query = "select value as v from conf where key = '$key'";
-		
+		$query = "select value v from conf where key = '$key'";
+
 		$db = new SQLite3(getDataBaseLocation());
 		$results = $db->query($query);
-		
+
 		$data = $results->fetchArray(SQLITE3_ASSOC);
 		$db->close();
-		
+
 		return $data['v'];
 	}
 
@@ -25,17 +25,17 @@
 	 * Get command
 	 */
 	function getCommand($key) {
-		$query = "select command as c from command where name = '$key'";
-		
+		$query = "select command c from command where name = '$key'";
+
 		$db = new SQLite3(getDataBaseLocation());
 		$results = $db->query($query);
-		
+
 		$data = $results->fetchArray(SQLITE3_ASSOC);
 		$db->close();
-		
+
 		return $data['c'];
 	}
-	
+
 	/**
 	 * Actual date
 	 */
@@ -47,7 +47,7 @@
 	function executeCommand($command) {
 		return exec($command);
 	}
-	
+
 	// Command executor
 	function executeShellCommand($command) {
 		return shell_exec($command);

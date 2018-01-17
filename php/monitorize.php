@@ -323,7 +323,7 @@
 
 		$type = $GLOBALS['memory'];
 		$info = "Cache";
-		$value = $memory[6];
+		$value = $memory[5];
 		$today = today();
 		$show = 1;
 		
@@ -341,7 +341,7 @@
 	function cleanCache() {
 		$memory = getMemory();
 		
-		if ($memory[6] > getConf('control_param_mem_cache')) {
+		if ($memory[5] > getConf('control_param_mem_cache')) {
 			return "Y";
 		}
 		return "N";
@@ -354,7 +354,7 @@
 		
 		$type = $GLOBALS['system'];
 		$info = "Cache cleaned";
-		$value = $memory[6];	
+		$value = $memory[5];	
 		$today = today();
 		$show = 0;
 
@@ -376,7 +376,7 @@
 
 		$type = $GLOBALS['storage'];
 		$info = "/root";
-		$value = eregi_replace("[a-zA-Z]", "", $root);	
+		$value = preg_replace("[G]", "", $root);	
 		$today = today();
 		$show = 1;
 		
@@ -387,7 +387,7 @@
 		
 		$type = $GLOBALS['storage'];
 		$info = "/boot";
-		$value = eregi_replace("[a-zA-Z]", "", $boot);	
+		$value = preg_replace("[M]", "", $boot);	
 		$today = today();
 		$show = 1;
 		
@@ -398,7 +398,7 @@
 		
 		$type = $GLOBALS['storage'];
 		$info = "/sda1";
-		$value = eregi_replace("[a-zA-Z]", "", $sda1);
+		$value = preg_replace("[G]", "", $sda1);
 		$today = today();
 		$show = 1;
 		

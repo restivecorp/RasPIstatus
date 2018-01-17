@@ -240,7 +240,7 @@
 													<?php 
 														$color = "primary";
 
-														if ($mem[6] > getConf('control_param_mem_cache')) {
+														if ($mem[5] > getConf('control_param_mem_cache')) {
 															$color = "warning";
 														} else {
 															$color = "success";
@@ -248,7 +248,7 @@
 													?>
 													<div class="panel-body bk-<?php echo $color; ?> text-light">
 														<div class="stat-panel text-center">
-															<div class="stat-panel-number h1 "><?php echo $mem[6]; ?></div>
+															<div class="stat-panel-number h1 "><?php echo $mem[5]; ?></div>
 															<div class="stat-panel-title text-uppercase">Mem. Cached</div>
 														</div>
 													</div>	
@@ -286,7 +286,7 @@
 														$boot = getStorage("/boot", "M")[3];
 														$color = "primary";
 														
-														if (eregi_replace("[a-zA-Z]", "", $boot) < getConf('control_param_store_boot')) {
+														if (preg_replace("[M]", "", $boot) < getConf('control_param_store_boot')) {
 															$color = "warning";
 														} else {
 															$color = "success";
@@ -309,7 +309,7 @@
 														$root = getStorage("/")[3];
 														$color = "primary";
 														
-														if (eregi_replace("[a-zA-Z]", "", $root) < getConf('control_param_store_root')) {
+														if (preg_replace("[G]", "", $root) < getConf('control_param_store_root')) {
 															$color = "warning";
 														} else {
 															$color = "success";
@@ -332,7 +332,7 @@
 														$sda1 = getStorage('/dev/sda1')[3];
 														$color = "primary";
 														
-														if (eregi_replace("[a-zA-Z]", "", $sda1) < getConf('control_param_store_hd')) {
+														if (preg_replace("[G]", "", $sda1) < getConf('control_param_store_hd')) {
 															$color = "warning";
 														} else {
 															$color = "success";

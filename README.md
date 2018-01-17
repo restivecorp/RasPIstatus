@@ -6,7 +6,7 @@ This is a PHP Web application that gets control to the status of a Raspberry PI.
 
 * Raspberry PI
 * Web Server (Apache, ngix, lighttp, ...)
-* PHP
+* PHP 7
 * SQLite3
 * Transmission download torrent (only to monitorize downloads)
 * Commands: _vnstat_ | _tree_
@@ -32,12 +32,12 @@ The application template is 'Harmony Admin': https://github.com/theme-struck/the
 2. Move the database file to another path (out of http server).
 ```
 	cd /var/www/rpi-monitor/php
-	mv rpi-server.db.empty rpi-server.db
+	mv rpi-monitor.db.empty rpi-monitor.db
 	
-	sudo mkdir /var/rpi-server
-	sudo mv rpi-server.db /var/rpi-server/rpi-server.db
-	sudo chmod 777 /var/rpi-server/
-	sudo chmod 777 /var/rpi-server/*
+	sudo mkdir /var/rpi-monitor
+	sudo mv rpi-monitor.db /var/rpi-monitor/rpi-monitor.db
+	sudo chmod 777 /var/rpi-monitor/
+	sudo chmod 777 /var/rpi-monitor/*
 ```
 
 3. Edit correct path (database) in configuration file
@@ -51,8 +51,8 @@ The application template is 'Harmony Admin': https://github.com/theme-struck/the
 
 4. Edit config values in database:
 ```
-	cd /var/rpi-server/
-	sqlite3 rpi-server.db
+	cd /var/rpi-monitor/
+	sqlite3 rpi-monitor.db
 	
 	select * from conf where key like 'system_param_%';
 	
@@ -61,8 +61,8 @@ The application template is 'Harmony Admin': https://github.com/theme-struck/the
 
 5. Review and edit control params to alert in database:
 ```
-	cd /var/rpi-server/
-	sqlite3 rpi-server.db
+	cd /var/rpi-monitor/
+	sqlite3 rpi-monitor.db
 	
 	select * from conf where key like 'control_param_%';
 	
